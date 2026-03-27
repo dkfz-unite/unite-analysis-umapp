@@ -7,9 +7,9 @@ test_that("returns all data when n_features >= ncol(data)", {
   expect_equal(result, data)
 })
 
-test_that("returns all data for method 'none'", {
+test_that("returns all data for method NULL", {
   data <- data.frame(a = 1:5, b = 6:10, c = 11:15)
-  result <- feature_selection(data, "none", 2)
+  result <- feature_selection(data, NULL, 2)
   expect_equal(result, data)
 })
 

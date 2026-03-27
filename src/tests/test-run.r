@@ -44,7 +44,7 @@ default_options <- function() {
     batch_correction_method = NULL,
     min_non_missing_fraction = 0.5,
     require_min_fraction_one_class = FALSE,
-    feature_selection_method = "none",
+    feature_selection_method = NULL,
     feature_selection_n_features = 1000,
     umap_n_neighbors = 5,
     umap_metric = "euclidean",

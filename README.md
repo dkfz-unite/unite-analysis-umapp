@@ -126,7 +126,7 @@ The preprocessing of the data is configurable.
 - `umap_random_state` [int >=0 or null] seed to ensure reproducibility.
 - `umap_min_dist` [float > 0.] determines how close together points can be in the final embedding.
 - `umap_n_principal_components` [int >= 1] for high dimensional data the UMAP algorithm becomes very expensive. This parameter specifies the number of principal components on which to base the final embedding.
-- `feature_selection_method` [string literal ["variance", "none"]] optionally perform feature selection prior to PCA. If "variance" this will select the top n features with the highest variance.
+- `feature_selection_method` [string literal ["variance"] or null] optionally perform feature selection prior to PCA. If "variance" this will select the top n features with the highest variance.
 - `feature_selection_n_features` [int >= 1] the number of features to select if feature_selection_method is not "none".
 ```json
 {
