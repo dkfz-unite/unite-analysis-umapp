@@ -44,7 +44,7 @@ default_options <- function() {
     batch_correction_method = NULL,
     min_non_missing_fraction = 0.5,
     require_min_fraction_one_class = FALSE,
-    feature_selection_method = "none",
+    feature_selection_method = NULL,
     feature_selection_n_features = 1000,
     umap_n_neighbors = 5,
     umap_metric = "euclidean",
@@ -68,8 +68,10 @@ create_test_data <- function(n_samples = 10, n_features = 50) {
 create_test_metadata <- function(n_samples = 10) {
   data.frame(
     sample = paste0("sample", 1:n_samples),
-    condition = rep(c("A", "B"), length.out = n_samples),
-    batch = rep(c(1, 2), length.out = n_samples)
+    batch = rep(c(1, 2), length.out = n_samples),
+    # arbitrary metadata columns can be added here if needed but are ignored
+    metadata1 = runif(n_samples, min = 0, max = 1),
+    metadata2 = sample(c("A", "B"), n_samples, replace = TRUE)
   )
 }
 

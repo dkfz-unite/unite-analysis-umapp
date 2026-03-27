@@ -1,8 +1,9 @@
 feature_selection <- function(data, method, n_features) {
+  if (is.null(method)) {
+    return(data)
+  }
   method <- tolower(method)
   if (n_features >= ncol(data)) {
-    return(data)
-  } else if (method == "none") {
     return(data)
   } else if (method == "variance") {
     feature_variances <- apply(data, 2, var, na.rm = TRUE)
