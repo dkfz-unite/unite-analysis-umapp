@@ -28,6 +28,22 @@ Where:
 - `batch` - optional batch variable for batch correction. If there is no batch variable, this column should be present but empty
 - `metadata1` and `metadata2` represent optional columns that can be present, but will have no effect on the analysis.
 
+### Results format
+The workflow outputs a file `{proc}/results.tsv`
+```tsv
+V1  V2
+0.1 0.9
+0.34 0.6
+0.2 0.4
+0.1 0.4
+```
+
+Where:
+- `V1` the first umap dimension (usually plotted on the x axis)
+- `V2` the second umap dimension (usually plotted on the y axis)
+- rows correspond to samples, in the same order as in `{proc}/metadata.tsv`
+
+
 ### Options configuration
 The preprocessing of the data is configurable.
 
