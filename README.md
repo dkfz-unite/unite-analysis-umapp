@@ -37,7 +37,7 @@ The preprocessing of the data is configurable.
   - "mindet" algorithm where each missing value is imputed with the corresponding "minimum" (actually 1st percentile) of intensity values for its sample.
   - "minprob" algorithm where imputed values are sampled from a Gaussian distribution, centered on the "minimum" (see above). The standard deviation of this distribution is set to the median of the standard deviations of the distributions of all proteins.
 - `stratify_imputation_by_batch`: [true, false] if true the imputation will be done separately for each batch. In the event that any proteins have less than three non-missing samples in any batch, it will fall back to non-stratified processing.
-- `batch_correction_method`: ["combat", "limma", null] if there is a batch variable will perform batch correction with `comBat` (par.prior=True) function of the `sva` package or `removeBatchEffects` from `limma`. These options will be ignored for differential expression analysis. In this case the batch variable will be added as a fixed effect to the linear model fit by `limma`
+- `batch_correction_method`: ["combat", "limma", null] if there is a batch variable will perform batch correction with `comBat` (par.prior=True) function of the `sva` package or `removeBatchEffects` from `limma`. 
 - `min_non_missing_fraction`:[float (0<x<=1.)] the minimum proportion of non-missing values of a protein required for it be retained for analysis
 - `require_min_fraction_one_class`: [true,false] if true a protein must exceed `min_non_missing_fraction` in only one class, to retained.
 - `umap_n_neighbors` [int 2<=x<n_samples] the number opf neighbors umap will use to build the graph
