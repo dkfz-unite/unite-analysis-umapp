@@ -1,0 +1,18 @@
+{
+  "normalization_method": "median",
+  "normalization_log_offset": 1,
+  "imputation_method": "mindet",
+  "stratify_imputation_by_batch": false,
+  "batch_correction_method": null,
+  "min_non_missing_fraction": 0.5,
+  "require_min_fraction_one_class": false,
+
+  "feature_selection_method": "variance",
+  "feature_selection_n_features": 1000,
+
+  "umap_n_neighbors": 15,
+  "umap_metric": "euclidean",
+  "umap_random_state": null,
+  "umap_min_dist": 0.1,
+  "umap_n_principal_components": 50
+}
