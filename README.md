@@ -16,19 +16,17 @@ Where:
 ### Metadata format
 Metadata file `{proc}/metadata.tsv` should be in the following format:
 ```tsv
-sample condition batch
-sample1 A 1
-sample2 A 2
-sample3 B 1
-sample4 B 2
+sample batch metadata1 metadata2
+sample1 1 8 k
+sample2 2 4 k
+sample3 1 2 k
+sample4 2 1 k
 ```
 
 Where:
 - `sample` - name of the sample. Should be first column.
-- `condition` - condition of the sample (e.g. control or treatment). Should be second column.
-- `batch` - optional batch variable for batch correction. If there is no batch variable, this column should be present but empty 
-- Should be at least two samples for each condition.
-- Should be exactly two conditions.
+- `batch` - optional batch variable for batch correction. If there is no batch variable, this column should be present but empty
+- `metadata1` and `metadata2` represent optional columns that can be present, but will have no effect on the analysis.
 
 ### Options configuration
 The preprocessing of the data is configurable.
