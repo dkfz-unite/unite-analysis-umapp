@@ -1,7 +1,8 @@
 FROM ghcr.io/dkfz-unite/docker-rdev-biocmanager:latest AS base
 
 FROM base AS install
-COPY ./src/install /src
+COPY ./src/install/packages.txt /src/packages.txt
+COPY ./src/install/install.R /src/install.R
 WORKDIR /src
 RUN Rscript install.R
 RUN apt-get clean
