@@ -1,8 +1,6 @@
-BiocManager::install("limma")
-BiocManager::install("edgeR") # prerequisite for sva
-BiocManager::install("sva")
-BiocManager::install("preprocessCore")
-install.packages("umap")
-install.packages("readr")
-install.packages("dplyr")
-install.packages("jsonlite")
+install.packages("pak", repos = "https://r-lib.github.io/p/pak/stable/")
+
+packages <- readLines("packages.txt")
+packages <- packages[nchar(trimws(packages)) > 0]
+
+pak::pkg_install(packages, ask = FALSE)

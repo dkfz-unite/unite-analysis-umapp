@@ -1,0 +1,8 @@
+bioc::limma
+bioc::edgeR
+bioc::sva
+bioc::preprocessCore
+umap
+readr
+dplyr
+jsonlite
