@@ -96,17 +96,17 @@ Where:
 ### Results format
 The workflow outputs a file `{proc}/results.tsv`
 ```tsv
-V1  V2
-0.1 0.9
-0.34 0.6
-0.2 0.4
-0.1 0.4
+sample V1  V2
+sample1 0.1 0.9
+sample2 0.34 0.6
+sample3 0.2 0.4
+sample4 0.1 0.4
 ```
 
 Where:
 - `V1` the first umap dimension (usually plotted on the x axis)
 - `V2` the second umap dimension (usually plotted on the y axis)
-- rows correspond to samples, in the same order as in `{proc}/metadata.tsv`
+- `sample` correspond to samples, in the same order as in `{proc}/metadata.tsv`
 
 
 ### Options configuration
