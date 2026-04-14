@@ -1,4 +1,4 @@
-sample	batch	class_label	metadata1
+sample	batch	condition	metadata1
 sample1	1	A	k
 sample2	1	B	k
 sample3	2	A	k

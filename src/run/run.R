@@ -29,10 +29,10 @@ rs <- as.integer(rs)
 }
 options <- replace_required(options, "umap_random_state", rs)
 
-# if required_min_fraction_one_class is TRUE, check that class_label column contains no missing values
+# if required_min_fraction_one_class is TRUE, check that condition column contains no missing values
 if (get_required(options, "require_min_fraction_one_class")) {
-  if (anyNA(metadata$class_label)) {
-    stop("require_min_fraction_one_class is TRUE but class_label column contains missing values")
+  if (anyNA(metadata$condition)) {
+    stop("require_min_fraction_one_class is TRUE but condition column contains missing values")
   }
 }
 
@@ -55,7 +55,7 @@ data_matrix <- t(data_matrix)
 # preprocess data
 processed_data <- preprocess_data(data=data_matrix, 
                               batch_vector=get_required(metadata_matrix, "batch"),
-                              class_labels=get_required(metadata_matrix, "class_label"), 
+                              class_labels=get_required(metadata_matrix, "condition"), 
                               options = options)
 
 
