@@ -1,7 +1,7 @@
 library(testthat)
 library(readr)
 library(jsonlite)
-print(getwd())
+
 # Helper to run the full pipeline script
 run_umap_pipeline <- function(data, metadata, options) {
   # Create temporary directory
