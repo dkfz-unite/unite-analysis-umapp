@@ -75,4 +75,7 @@ umap_result <- umap(pca_scores, config = umap_config)
 
 # write umap coordinates to file
 umap_coords <- as.data.frame(umap_result$layout)
+umap_coords$sample <- rownames(pca_scores)
+umap_coords <- dplyr::select(umap_coords, sample, dplyr::everything())
 write_tsv(umap_coords, file.path(workdir, "results.tsv"))
+
