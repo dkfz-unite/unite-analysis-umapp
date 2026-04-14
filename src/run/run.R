@@ -20,6 +20,7 @@ metadata <- read_tsv(metadata_file)
 options <- fromJSON(options_file)
 
 ### preprocess options
+# set umap random_state to NA_integer_ if not provided or empty, otherwise convert to integer
 rs <- get_required(options, "umap_random_state")
 if (is.null(rs) || length(rs) == 0) {
 rs <- NA_integer_
@@ -27,6 +28,13 @@ rs <- NA_integer_
 rs <- as.integer(rs)
 }
 options <- replace_required(options, "umap_random_state", rs)
+
+# if required_min_fraction_one_class is TRUE, check that class_label column contains no missing values
+if (get_required(options, "require_min_fraction_one_class")) {
+  if (anyNA(metadata$class_label)) {
+    stop("require_min_fraction_one_class is TRUE but class_label column contains missing values")
+  }
+}
 
 
 
@@ -46,8 +54,8 @@ data_matrix <- t(data_matrix)
 
 # preprocess data
 processed_data <- preprocess_data(data=data_matrix, 
-                              batch_vector=metadata_matrix$batch,
-                              class_labels=metadata_matrix$condition, 
+                              batch_vector=get_required(metadata_matrix, "batch"),
+                              class_labels=get_required(metadata_matrix, "class_label"), 
                               options = options)
 
 

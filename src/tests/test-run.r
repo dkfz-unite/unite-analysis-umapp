@@ -69,6 +69,7 @@ create_test_metadata <- function(n_samples = 10) {
   data.frame(
     sample = paste0("sample", 1:n_samples),
     batch = rep(c(1, 2), length.out = n_samples),
+    class_label = rep(c("A", "B"), length.out = n_samples),
     # arbitrary metadata columns can be added here if needed but are ignored
     metadata1 = runif(n_samples, min = 0, max = 1),
     metadata2 = sample(c("A", "B"), n_samples, replace = TRUE)
@@ -128,6 +129,33 @@ test_that("test edge case where feature_selection_n_features == 1", {
   
   umap_coords <- run_umap_pipeline(data, metadata, options)
   
+  expect_equal(nrow(umap_coords), 8)
+  expect_equal(ncol(umap_coords), 3)
+  expect_false(anyNA(umap_coords))
+})
+
+# test an error is raised when any elements of class_label column are missing when require_min_fraction_one_class is TRUE
+test_that("error is raised when class_label contains missing values and require_min_fraction_one_class is TRUE", {
+  options <- default_options()
+  options$require_min_fraction_one_class <- TRUE
+  
+  data <- create_test_data(n_samples = 8, n_features = 10)
+  metadata <- create_test_metadata(n_samples = 8)
+  metadata$class_label[1] <- NA  # introduce missing value
+  
+  expect_error(run_umap_pipeline(data, metadata, options), "run.R exited with code 1")
+})
+
+# test that no error is raised when require_min_fraction_one_class is FALSE
+test_that("no error is raised when class_label contains missing values and require_min_fraction_one_class is FALSE", {
+  options <- default_options()
+  options$require_min_fraction_one_class <- FALSE
+  
+  data <- create_test_data(n_samples = 8, n_features = 10)
+  metadata <- create_test_metadata(n_samples = 8)
+  metadata$class_label[1] <- NA  # introduce missing value
+  # check it runs without error
+  umap_coords <- run_umap_pipeline(data, metadata, options)
   expect_equal(nrow(umap_coords), 8)
   expect_equal(ncol(umap_coords), 3)
   expect_false(anyNA(umap_coords))
