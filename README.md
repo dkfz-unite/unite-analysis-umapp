@@ -81,16 +81,17 @@ Where:
 ### Metadata format
 Metadata file `{proc}/metadata.tsv` should be in the following format:
 ```tsv
-sample batch metadata1 metadata2
-sample1 1 8 k
-sample2 2 4 k
-sample3 1 2 k
-sample4 2 1 k
+sample batch condition metadata1 metadata2
+sample1 1 A 8 k
+sample2 2 B 4 k
+sample3 1 B 2 k
+sample4 2 A 1 k
 ```
 
 Where:
 - `sample` - name of the sample. Should be first column.
 - `batch` - optional batch variable for batch correction. If there is no batch variable, this column should be present but empty
+- `condition` labels to use when `require_min_fraction_one_class` (below) is true. If `require_min_fraction_one_class` is true, it is expected to be complete, without missing values. 
 - `metadata1` and `metadata2` represent optional columns that can be present, but will have no effect on the analysis.
 
 ### Results format
