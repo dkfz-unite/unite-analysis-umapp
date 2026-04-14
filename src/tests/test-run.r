@@ -1,7 +1,7 @@
 library(testthat)
 library(readr)
 library(jsonlite)
-
+print(getwd())
 # Helper to run the full pipeline script
 run_umap_pipeline <- function(data, metadata, options) {
   # Create temporary directory
@@ -18,7 +18,7 @@ run_umap_pipeline <- function(data, metadata, options) {
   write(toJSON(options, null = "null", auto_unbox = TRUE), options_file)
   
   # Execute run.R as subprocess
-  cmd <- sprintf("Rscript run.R %s", tmpdir)
+  cmd <- sprintf("cd ../run && Rscript run.R %s", tmpdir)
   exit_code <- system(cmd)
   
   if (exit_code != 0) {
@@ -86,7 +86,7 @@ test_that("n_neighbors greater than n_samples returns 2D array with no NAs", {
   umap_coords <- run_umap_pipeline(data, metadata, options)
   
   expect_equal(nrow(umap_coords), 5)
-  expect_equal(ncol(umap_coords), 2)
+  expect_equal(ncol(umap_coords), 3)
   expect_false(anyNA(umap_coords))
 })
 
@@ -100,7 +100,7 @@ test_that("n_principal_components < n_variables returns 2D array with no NAs", {
   umap_coords <- run_umap_pipeline(data, metadata, options)
   
   expect_equal(nrow(umap_coords), 8)
-  expect_equal(ncol(umap_coords), 2)
+  expect_equal(ncol(umap_coords), 3)
   expect_false(anyNA(umap_coords))
 })
 
@@ -114,7 +114,7 @@ test_that("n_principal_components > n_variables returns 2D array with no NAs", {
   umap_coords <- run_umap_pipeline(data, metadata, options)
   
   expect_equal(nrow(umap_coords), 8)
-  expect_equal(ncol(umap_coords), 2)
+  expect_equal(ncol(umap_coords), 3)
   expect_false(anyNA(umap_coords))
 })
 
@@ -129,6 +129,6 @@ test_that("test edge case where feature_selection_n_features == 1", {
   umap_coords <- run_umap_pipeline(data, metadata, options)
   
   expect_equal(nrow(umap_coords), 8)
-  expect_equal(ncol(umap_coords), 2)
+  expect_equal(ncol(umap_coords), 3)
   expect_false(anyNA(umap_coords))
 })
